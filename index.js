@@ -12,7 +12,7 @@ var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 var isAndroid = /(android)/i.test(navigator.userAgent);
 console.log('QUIRKS MODE');
 /**
- * Fixes many basic browser problem with snapping things to pixels. Ported from the Craig Albert original version
+ * Fixes many basic browser problem with snapping things to pixels. Ported from the Craig Albert original version.
  * @param nodeList
  * @returns {boolean}
  */
@@ -32,11 +32,17 @@ export function smoothify(nodeList) {
       item.style.outline = "1px solid transparent";
     }
     item.style.transform = "rotate(0.1deg) translateZ(0.1px)";
- 
   })
 }
-/*
-  Array.from( container.querySelectorAll('.catch-all')).forEach(function (item) {
-      item.addEventListener('click', catchAllHandler);
-    });
+/**
+ * fixes pixel snapping issues in chrome svgs
+ * @param nodeList
  */
+export function patchChromeSVG(nodeList) {
+  console.log("patchChromeSVG --- add transformPerspective: 1000 if no 3D and scaling images");
+  let itterArray = Array.from(nodeList);
+  itterArray.forEach(item => {
+    item.style.transform = "translateY(0.1px)";
+  })
+}
+
