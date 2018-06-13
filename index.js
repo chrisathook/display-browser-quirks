@@ -18,17 +18,22 @@ console.log('QUIRKS MODE');
  */
 
 export function smoothify(nodeList) {
+  console.log("RUN SMOOTHIFY");
   if (isiOS || isAndroid) {
     return false;
   }
   let itterArray = Array.from(nodeList);
-  
-  itterArray.forEach(item =>{
-  
-    item.style.transform = "rotate(.01deg)";
-    item.style.transform = "translateZ(0.1)";
+  itterArray.forEach(item => {
+    if (isIE || isSafari || isEdge) {
+      item.style.transform = "rotate(0.1deg)";
+      return;
+    }
+    if (isFirefox && item.style.outline === "") {
+      item.style.outline = "1px solid transparent";
+    }
+    item.style.transform = "rotate(0.1deg) translateZ(0.1px)";
+ 
   })
-  
 }
 /*
   Array.from( container.querySelectorAll('.catch-all')).forEach(function (item) {

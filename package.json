@@ -16,7 +16,20 @@
     "url": "https://github.com/chrisathook/display-browser-quirks/issues"
   },
   "browserify": {
-    "transform": [["babelify", { "presets": ["es2015"] }]]
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
   },
-  "homepage": "https://github.com/chrisathook/display-browser-quirks#readme"
+  "homepage": "https://github.com/chrisathook/display-browser-quirks#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babelify": "^8.0.0"
+  }
 }
