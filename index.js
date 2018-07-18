@@ -25,13 +25,13 @@ export function smoothify(nodeList) {
   let itterArray = Array.from(nodeList);
   itterArray.forEach(item => {
     if (isIE || isSafari || isEdge) {
-      item.style.transform = "rotate(0.1deg)";
+      TweenMax.set (item,{rotation:"+=.01"})
       return;
     }
     if (isFirefox && item.style.outline === "") {
       item.style.outline = "1px solid transparent";
     }
-    item.style.transform = "rotate(0.1deg) translateZ(0.1px)";
+    TweenMax.set (item,{rotation:"+=.01",z:"+=.1"})
   })
 }
 /**
@@ -42,7 +42,7 @@ export function patchChromeSVG(nodeList) {
   console.log("patchChromeSVG --- add transformPerspective: 1000 if no 3D and scaling images");
   let itterArray = Array.from(nodeList);
   itterArray.forEach(item => {
-    item.style.transform = "translateY(0.1px)";
+    TweenMax.set (item,{y:"+=.1"})
   })
 }
 
