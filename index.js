@@ -42,7 +42,7 @@ export function patchChromeSVG(nodeList) {
   console.log("patchChromeSVG --- add transformPerspective: 1000 if no 3D and scaling images");
   let itterArray = Array.from(nodeList);
   itterArray.forEach(item => {
-    TweenMax.set (item,{y:"+=.1"})
+    TweenMax.set (item,{y:"+=.1", rotation:"+=.01"})
   })
 }
 
