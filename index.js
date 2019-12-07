@@ -17,6 +17,15 @@ console.log('QUIRKS MODE');
  * @returns {boolean}
  */
 
+
+var tweenObj = null;
+
+if (typeof window.gsap === "object") {
+  tweenObj = window.gsap
+}else {
+  tweenObj = window.TweenMax
+}
+
 export function smoothify(nodeList) {
   console.log("RUN SMOOTHIFY");
   if (isiOS || isAndroid) {
@@ -25,13 +34,13 @@ export function smoothify(nodeList) {
   let itterArray = Array.from(nodeList);
   itterArray.forEach(item => {
     if (isIE || isSafari || isEdge) {
-      TweenMax.set (item,{rotation:"+=.01"})
+      tweenObj.set (item,{rotation:"+=.01"})
       return;
     }
     if (isFirefox && item.style.outline === "") {
       item.style.outline = "1px solid transparent";
     }
-    TweenMax.set (item,{rotation:"+=.01",z:"+=.1"})
+    tweenObj.set (item,{rotation:"+=.01",z:"+=.1"})
   })
 }
 /**
@@ -42,7 +51,7 @@ export function patchChromeSVG(nodeList) {
   console.log("patchChromeSVG --- add transformPerspective: 1000 if no 3D and scaling images");
   let itterArray = Array.from(nodeList);
   itterArray.forEach(item => {
-    TweenMax.set (item,{y:"+=.1", rotation:"+=.01"})
+    tweenObj.set (item,{y:"+=.1", rotation:"+=.01"})
   })
 }
 
